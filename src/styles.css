@@ -1167,11 +1167,6 @@ h1 {
   background: linear-gradient(to right, rgba(244, 63, 94, 0.04), rgba(255, 255, 255, 0.85));
 }
 
-.feedback-section.diagnostics {
-  border-left-color: #8b5cf6; /* violet-500 */
-  background: linear-gradient(to right, rgba(139, 92, 246, 0.04), rgba(255, 255, 255, 0.85));
-}
-
 .feedback-section.memory {
   border-left-color: #f59e0b; /* amber-500 */
   background: linear-gradient(to right, rgba(245, 158, 11, 0.04), rgba(255, 255, 255, 0.85));
@@ -1200,10 +1195,6 @@ h1 {
 
 .feedback-section.error-reason .section-icon {
   color: #f43f5e;
-}
-
-.feedback-section.diagnostics .section-icon {
-  color: #8b5cf6;
 }
 
 .feedback-section.memory .section-icon {

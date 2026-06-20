@@ -5,8 +5,18 @@ import {
   getBossSearchUrl,
   type BossCityKey,
 } from '../data/bossJobSnapshots'
+import { categories } from '../data/questions'
+import type { CategoryId } from '../types'
 
-export const JobBoard = React.memo(function JobBoard() {
+/** Salary text BOSS returns for logged-out scrapes carries no real information. */
+const isPlaceholderSalary = (salary: string) => !salary || /登录后可见|未公开/.test(salary)
+
+interface JobBoardProps {
+  /** Jump to a question-bank category so the recruitment sample drives practice. */
+  onPractice?: (categoryId: CategoryId) => void
+}
+
+export const JobBoard = React.memo(function JobBoard({ onPractice }: JobBoardProps) {
   const [activeCityKey, setActiveCityKey] = useState<BossCityKey>(defaultBossCityKey)
   const activeSnapshot = useMemo(
     () => bossCitySnapshots.find((snapshot) => snapshot.key === activeCityKey) ?? bossCitySnapshots[0],
@@ -68,6 +78,26 @@ export const JobBoard = React.memo(function JobBoard() {
         </div>
       </div>
 
+      {onPractice && (
+        <div className="job-practice-bridge">
+          <span className="job-practice-label">岗位能力要求已融入题库，去针对性练习：</span>
+          <div className="job-practice-chips">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                type="button"
+                className="job-practice-chip"
+                style={{ '--chip-accent': category.accent } as React.CSSProperties}
+                onClick={() => onPractice(category.id)}
+                title={`练习「${category.name}」题库`}
+              >
+                {category.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       {activeSnapshot.jobs.length > 0 ? (
         <div className="job-marquee-viewport">
           <div className="job-marquee-track">
@@ -85,7 +115,7 @@ export const JobBoard = React.memo(function JobBoard() {
                   <div className="job-main-info">
                     <div className="job-meta-line">
                       <span className="job-title">{job.title}</span>
-                      <span className="job-salary">{job.salary}</span>
+                      {!isPlaceholderSalary(job.salary) && <span className="job-salary">{job.salary}</span>}
                     </div>
                     <div className="job-meta-line">
                       <span className="job-company">{job.company}</span>

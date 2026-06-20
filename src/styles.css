@@ -2237,6 +2237,49 @@ code {
   line-height: 1;
 }
 
+.job-practice-bridge {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  padding: 12px 0 2px;
+}
+
+.job-practice-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.job-practice-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.job-practice-chip {
+  --chip-accent: #0d9488;
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 12px;
+  border: 1px solid var(--chip-accent);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--chip-accent);
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform var(--t-fast), box-shadow var(--t-fast), background var(--t-fast), color var(--t-fast);
+}
+
+.job-practice-chip:hover {
+  transform: translateY(-1px);
+  background: var(--chip-accent);
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
 .job-marquee-viewport {
   flex: 1;
   overflow: hidden;

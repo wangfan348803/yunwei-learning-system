@@ -212,6 +212,7 @@ function App() {
   )
   const recordedQuestionIdsRef = useRef(new Set<string>())
   const importInputRef = useRef<HTMLInputElement | null>(null)
+  const questionStageRef = useRef<HTMLElement | null>(null)
   const [selected, setSelected] = useState<string[]>([])
   const [result, setResult] = useState<AnswerResult | null>(null)
   const [importMessage, setImportMessage] = useState<string>('')
@@ -872,7 +873,7 @@ function App() {
           </div>
         </aside>
 
-        <section className="question-stage" aria-label="当前题目">
+        <section className="question-stage" aria-label="当前题目" ref={questionStageRef}>
           <div className="question-toolbar">
             <div>
               <span className="question-kicker">
@@ -1005,7 +1006,12 @@ function App() {
           )}
 
           <Suspense fallback={<div className="job-board-loading">加载岗位样本…</div>}>
-            <JobBoard />
+            <JobBoard
+              onPractice={(categoryId) => {
+                chooseMode(categoryId)
+                questionStageRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+              }}
+            />
           </Suspense>
 
         </section>

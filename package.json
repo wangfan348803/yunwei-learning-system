@@ -1,0 +1,46 @@
+{
+  "name": "yunwei-learning-system",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && npm run typecheck:functions && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "lint": "eslint .",
+    "typecheck:functions": "tsc -p tsconfig.functions.json",
+    "db:migrate": "npx wrangler d1 migrations apply yunwei_learning_db --remote",
+    "audio:upload": "node scripts/upload-audio-to-r2.mjs",
+    "deploy:cloudflare": "npm run build && npx wrangler pages deploy dist --project-name=yunwei-learning-system --branch=main",
+    "boss:login": "node scripts/boss-login.mjs",
+    "boss:open": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/open-boss-sync-browser.ps1",
+    "boss:sync": "node scripts/sync-boss-jobs.mjs",
+    "boss:sync:headless": "node scripts/sync-boss-jobs.mjs --headless",
+    "boss:deploy": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/sync-boss-jobs-and-deploy.ps1",
+    "boss:task:install": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/install-boss-sync-task.ps1",
+    "boss:task:uninstall": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/uninstall-boss-sync-task.ps1"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "typescript": "~6.0.2",
+    "vite": "^8.0.12"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260531.1",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.12.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^10.3.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.6.0",
+    "playwright": "^1.60.0",
+    "typescript-eslint": "^8.59.2",
+    "vitest": "^4.1.7",
+    "wrangler": "^4.97.0"
+  }
+}

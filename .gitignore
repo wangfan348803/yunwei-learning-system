@@ -1,0 +1,15 @@
+node_modules
+dist
+.wrangler
+.playwright-mcp
+scratch
+*.local
+*.tsbuildinfo
+node_modules/.tmp
+
+# Question narration audio (~83MB, ~1764 mp3) — generated, not versioned.
+# Regenerate missing files with: node scripts/regen-audio.mjs
+public/audio/
+
+# Runtime logs and BOSS sync failure artifacts
+logs/

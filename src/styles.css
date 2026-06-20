@@ -12,7 +12,7 @@
   /* UI Palette */
   --ink: #0f172a;
   --muted: #475569;
-  --muted-light: #94a3b8;
+  --muted-light: #64748b;
   --line: rgba(15, 23, 42, 0.06);
   --line-strong: rgba(15, 23, 42, 0.12);
   --panel: rgba(255, 255, 255, 0.72);
@@ -664,6 +664,7 @@ h1 {
   font-weight: 800;
   line-height: 1.4;
   flex: 1;
+  max-width: 68ch;
 }
 
 .audio-play-btn {
@@ -745,9 +746,9 @@ h1 {
 /* Premium Options Grid & Cards with micro-animations */
 .option-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  margin-top: 36px;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 28px;
 }
 
 .option-card {
@@ -2060,6 +2061,7 @@ code {
 /* Option text content wrapper */
 .option-text-content {
   flex: 1;
+  font-weight: 600;
 }
 
 /* SRE Daily Tip Card Styling */
